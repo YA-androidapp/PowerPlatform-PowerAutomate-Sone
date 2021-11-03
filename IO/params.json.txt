@@ -1,0 +1,41 @@
+{
+    "items": [
+        { "k": "ya_myautonumber", "v": "prefix-1000" },
+        { "k": "ya_mychoice", "v": "" },
+        { "k": "ya_mycurrency", "v": "" },
+        { "k": "ya_mycurrency_base", "v": "" },
+        { "k": "ya_mycustomer", "v": "" },
+        { "k": "ya_mydateandtime", "v": "" },
+        { "k": "ya_mydateonly", "v": "" },
+        { "k": "ya_mydecimalnumber", "v": "" },
+        { "k": "ya_myduration", "v": "" },
+        { "k": "ya_myemail", "v": "" },
+        { "k": "ya_myfile", "v": "" },
+        { "k": "ya_myfloatingpointnumber", "v": "" },
+        { "k": "ya_myimage", "v": "" },
+        { "k": "ya_mylanguage", "v": "" },
+        { "k": "ya_mylookup", "v": "" },
+        { "k": "ya_mymultilinetext", "v": "" },
+        { "k": "ya_mymultiselectchoice", "v": "" },
+        { "k": "ya_myphone", "v": "" },
+        { "k": "ya_mytext", "v": "" },
+        { "k": "ya_mytextarea", "v": "" },
+        { "k": "ya_mytickersymbol", "v": "" },
+        { "k": "ya_mytimezone", "v": "" },
+        { "k": "ya_myurl", "v": "" },
+        { "k": "ya_mywholenumber", "v": "" },
+        { "k": "ya_myyesno", "v": "" },
+        { "k": "ya_name", "v": "" }
+
+ok:
+    not( ya_name eq 'name2' )
+    ya_name ne null and ( ya_name eq 'name1' or ya_name eq 'name2' )
+    endswith(ya_name,'1') and startswith(ya_name, 'name') and contains(ya_name,'ame')
+ng:
+    substringof(ya_name,'ame')
+    ya_name in ('name2', 'name3')
+
+
+
+    ]
+}
