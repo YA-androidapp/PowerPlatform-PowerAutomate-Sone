@@ -6,6 +6,17 @@
         { "k": "ya_mycurrency_base", "v": "" },
         { "k": "ya_mycustomer", "v": "" },
         { "k": "ya_mydateandtime", "v": "" },
+
+    ok:
+        ya_mydateandtime ge '2021-11-03T11:00:00Z' and ya_mydateandtime le '2021-11-03T13:00:00Z'
+        year(ya_mydateandtime) eq 2021 and month(ya_mydateandtime) eq 11 and day(ya_mydateandtime) eq 3 and hour(ya_mydateandtime) eq 12 and minute(ya_mydateandtime) eq 0 and second(ya_mydateandtime) eq 0
+        // The "year" function isn't supported.
+        // The "month" function isn't supported.
+        // The "day" function isn't supported.
+        // The "hour" function isn't supported.
+        // The "minute" function isn't supported.
+        // The "second" function isn't supported.
+
         { "k": "ya_mydateonly", "v": "" },
         { "k": "ya_mydecimalnumber", "v": "" },
         { "k": "ya_myduration", "v": "" },
@@ -28,14 +39,21 @@
         { "k": "ya_name", "v": "" }
 
 ok:
+    ya_name eq 'NAME2' // "ya_name": "name2",
     not( ya_name eq 'name2' )
     ya_name ne null and ( ya_name eq 'name1' or ya_name eq 'name2' )
     endswith(ya_name,'1') and startswith(ya_name, 'name') and contains(ya_name,'ame')
 ng:
-    substringof(ya_name,'ame')
-    ya_name in ('name2', 'name3')
-
-
+    substringof(ya_name,'ame') // BadRequest. // An unknown function with name 'substringof' was found. This may also be a function import or a key lookup on a navigation property, which is not allowed.
+    ya_name in ('name2', 'name3') // The method or operation is not implemented.
+    length(ya_name) gt 0 or length(ya_name) ge 0 // NotImplemented // The "length" function isn't supported.
+    indexof(ya_name,'ame') eq 1 // The "indexof" function isn't supported.
+    replace(ya_name,'name','value') eq 'value1' // The "replace" function isn't supported.
+    substring(ya_name,3) ne 'name' // The "substring" function isn't supported.
+    tolower(ya_name) eq 'name2' // The "tolower" function isn't supported.
+    toupper(ya_name) eq 'NAME2' // The "toupper" function isn't supported.
+    trim(ya_name) eq 'name2' // The "trim" function isn't supported.
+    concat(ya_name,ya_name) eq 'name1name1' // The "concat" function isn't supported.
 
     ]
 }
