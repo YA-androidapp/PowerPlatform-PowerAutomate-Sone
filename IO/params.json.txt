@@ -2,6 +2,11 @@
     "items": [
         { "k": "ya_myautonumber", "v": "prefix-1000" },
         { "k": "ya_mychoice", "v": "" },
+
+    ok:
+        hassubset(ya_mychoice,['Value1']) // BadRequest. // An unknown function with name 'hassubset' was found. This may also be a function import or a key lookup on a navigation property, which is not allowed.
+        hassubsequence(ya_mychoice,['Value1']) // An unknown function with name 'hassubsequence' was found. This may also be a function import or a key lookup on a navigation property, which is not allowed.
+
         { "k": "ya_mycurrency", "v": "" },
         { "k": "ya_mycurrency_base", "v": "" },
         { "k": "ya_mycustomer", "v": "" },
@@ -9,6 +14,8 @@
 
     ok:
         ya_mydateandtime ge '2021-11-03T11:00:00Z' and ya_mydateandtime le '2021-11-03T13:00:00Z'
+
+    ng:
         year(ya_mydateandtime) eq 2021 and month(ya_mydateandtime) eq 11 and day(ya_mydateandtime) eq 3 and hour(ya_mydateandtime) eq 12 and minute(ya_mydateandtime) eq 0 and second(ya_mydateandtime) eq 0
         // The "year" function isn't supported.
         // The "month" function isn't supported.
@@ -16,13 +23,26 @@
         // The "hour" function isn't supported.
         // The "minute" function isn't supported.
         // The "second" function isn't supported.
+        date(ya_mydateandtime) eq ya_mydateonly // The "date" function isn't supported.
+        time(ya_mydateandtime) ne null // The "time" function isn't supported.
+        ya_mydateandtime lt now() // The "now" function isn't supported.
 
         { "k": "ya_mydateonly", "v": "" },
         { "k": "ya_mydecimalnumber", "v": "" },
+
+    ng:
+        case(ya_mydecimalnumber gt 0 : 1 , true : 0) // ')' or ',' expected at position 29 in 'case(ya_mydecimalnumber gt 0 : 1 , true : 0)'.
+
         { "k": "ya_myduration", "v": "" },
         { "k": "ya_myemail", "v": "" },
         { "k": "ya_myfile", "v": "" },
         { "k": "ya_myfloatingpointnumber", "v": "" },
+
+    ok:
+        round(ya_myfloatingpointnumber) eq 10001 // The "round" function isn't supported.
+        floor(ya_myfloatingpointnumber) eq 10001 // The "floor" function isn't supported.
+        ceiling(ya_myfloatingpointnumber) eq 10002 // The "ceiling" function isn't supported.
+
         { "k": "ya_myimage", "v": "" },
         { "k": "ya_mylanguage", "v": "" },
         { "k": "ya_mylookup", "v": "" },
@@ -54,6 +74,8 @@ ng:
     toupper(ya_name) eq 'NAME2' // The "toupper" function isn't supported.
     trim(ya_name) eq 'name2' // The "trim" function isn't supported.
     concat(ya_name,ya_name) eq 'name1name1' // The "concat" function isn't supported.
+    matchesPattern(ya_name,'.+') // An unknown function with name 'matchesPattern' was found. This may also be a function import or a key lookup on a navigation property, which is not allowed.
+
 
     ]
 }
