@@ -3,7 +3,7 @@
         { "k": "ya_myautonumber", "v": "prefix-1000" },
         { "k": "ya_mychoice", "v": "" },
 
-    ok:
+    ng:
         hassubset(ya_mychoice,['Value1']) // BadRequest. // An unknown function with name 'hassubset' was found. This may also be a function import or a key lookup on a navigation property, which is not allowed.
         hassubsequence(ya_mychoice,['Value1']) // An unknown function with name 'hassubsequence' was found. This may also be a function import or a key lookup on a navigation property, which is not allowed.
 
@@ -38,10 +38,16 @@
         { "k": "ya_myfile", "v": "" },
         { "k": "ya_myfloatingpointnumber", "v": "" },
 
-    ok:
+    ng:
         round(ya_myfloatingpointnumber) eq 10001 // The "round" function isn't supported.
         floor(ya_myfloatingpointnumber) eq 10001 // The "floor" function isn't supported.
         ceiling(ya_myfloatingpointnumber) eq 10002 // The "ceiling" function isn't supported.
+        ya_myfloatingpointnumber add 5 ne 0 // The "Add" operator isn't supported.
+        ya_myfloatingpointnumber sub 5 ne 0 // The "Subtract" operator isn't supported.
+        ya_myfloatingpointnumber mul 5 ne 0 // The "Multiply" operator isn't supported.
+        ya_myfloatingpointnumber div 5 ne 0 // The "Divide" operator isn't supported.
+        ya_myfloatingpointnumber divby 5 ne 0 // Syntax error at position 30 in 'ya_myfloatingpointnumber divby 5 ne 0'.
+        ya_myfloatingpointnumber mod 5 ne 0 // The "Modulo" operator isn't supported.
 
         { "k": "ya_myimage", "v": "" },
         { "k": "ya_mylanguage", "v": "" },
